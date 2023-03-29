@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
-from django.contrib.auth import login
-
+from django.contrib.auth import login, logout, authenticate
+from .forms import TaskCreateForm
 
 # Create your views here.
 
@@ -40,6 +40,52 @@ def signup(request):
     
 def tasks(request):
     return render(request, 'tasks.html', {
-
     })
+
+def signout(request):
     
+    logout(request)
+    
+    return redirect('home')
+
+def signin(request):
+
+    if request.method == 'GET':
+        
+        return render (request, 'login.html', {
+            "form" : AuthenticationForm
+        })
+    
+    else:
+
+        try:
+
+            user = authenticate(request, username = request.POST['username'], password = request.POST['password'])
+            
+            if user is None:
+                return render (request, 'login.html', {
+                    "form" : AuthenticationForm, 
+                    "error" : "Username or password is incorrect"
+                })
+            else: 
+                login(request, user) # save session
+                return redirect('tasks')
+        except:
+
+            return render (request, 'login.html', {
+                    "form" : AuthenticationForm, 
+                    "error" : "Error in login"
+                })
+
+
+def create_task(request):
+
+    if request.method == 'GET': 
+        return render(request, 'create_task.html', {
+            "form" : TaskCreateForm
+        })
+    else:
+         return render(request, 'create_task.html', {
+            "form" : TaskCreateForm
+        })
+        # return redirect('tasks')
