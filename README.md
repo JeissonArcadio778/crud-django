@@ -14,9 +14,4 @@ pip freeze > requirements.txt
 # Install requirements
 pip install -r requirements.txt
 
-
-
-
-
-
 # crud-django
