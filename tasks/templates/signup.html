@@ -1,19 +1,53 @@
 {% extends './layout/base.html' %}
 
 {% block content %}
-    <h1>SigUp</h1>
     
-    {{error}}
 
+    <main class="container">
 
-    <form action="/signup/" method="post">
+        <div class="row">
+            <div class="col-md-4 offset-md-4 mt-4">
+                
+            <form action="/signup/" method="post" class="card card-body">
+
+                <h1 class="text-center">SigUp</h1>
+            
+                {{error}}
+                
+                <!-- Evitar ser falsificados -->
+                {% csrf_token %}
+                
+                <!-- {{form}} -->
+                
+                <div class="mb-3">
+                    <label for="username">Username: </label>
+                    <input type="text" name="username" id="username" placeholder="Write your Username: " class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label for="password1">Password: </label>
+                    <input type="password" name="password1" id="password1" placeholder="Write your Password: " class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label for="password2">Confirm password: </label>
+                    <input type="password" name="password2" id="password2" placeholder="Repeat your Password: " class="form-control">
+                </div>
         
-        <!-- Evitar ser falsificados -->
-        {% csrf_token %}
-        {{form}}
+                <button class="btn btn-secondary">SigUp</button>
+        
+            </form>
 
-        <button>SigUp</button>
 
-    </form>
+
+            </div>
+
+
+        </div>
+
+
+    </main>
+
+    
 
 {% endblock %}

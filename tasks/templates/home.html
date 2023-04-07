@@ -1,10 +1,27 @@
+{% extends './layout/base.html' %} {% block content %}
 
-{% extends './layout/base.html' %}
+<main class="container py-5">
+  <section class="card card-body">
+    <h1 class="display-4 text-center">Django CRUD APP</h1>
 
-{% block content %}
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit ipsum
+      repellat error doloremque voluptatibus voluptatum officia velit dicta, qui
+      numquam itaque earum rerum cupiditate doloribus! Quis mollitia
+      exercitationem error ducimus? Error hic obcaecati voluptatem aliquid
+      mollitia cumque culpa ipsam pariatur ipsum dolorem sed harum laudantium
+      esse corrupti possimus soluta, laborum non porro deserunt quibusdam illum,
+      sunt voluptates? Itaque, quisquam quod! Recusandae nostrum fugiat
+      inventore magnam mollitia porro sint facere incidunt repudiandae aliquam
+      quo neque natus totam, at iste nobis ad quidem sed optio maiores hic
+      corrupti! Quis odio debitis iste!
+    </p>
 
-    <h1>Home</h1>
-
-    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tenetur impedit omnis optio eveniet. Voluptas assumenda labore non cupiditate? Culpa cum consequuntur distinctio maxime adipisci quas molestias dignissimos ratione, soluta maiores?</p>
+    <div class="text-center">
+      <a class="btn btn-secondary" href="/signup">SignUp</a>
+      <a class="btn btn-dark" href="/login">Login</a>
+    </div>
+  </section>
+</main>
 
 {% endblock %}

@@ -1,18 +1,45 @@
-{% extends './layout/base.html'  %}
-
+{% extends './layout/base.html' %} 
 
 {% block content %}
+<main class="container">
 
-    <h1>Login</h1>
-    <h3>Welcome!</h3>
+  <div class="row">
+      <div class="col-md-4 offset-md-4 mt-4">
+          
+      <form method="post" class="card card-body">
 
-    <form method="post">
-    {{error}}
-    {% csrf_token %}    
-    {{form.as_p}}
-    
-    <button>Login</button>
+          <h1 class="text-center">Login</h1>
+      
+          {{error}}
+          
+          <!-- Evitar ser falsificados -->
+          {% csrf_token %}
+          
+          <!-- {{form}} -->
+          
+          <div class="mb-3">
+              <label for="username">Username: </label>
+              <input type="text" name="username" id="username" placeholder="Write your Username: " class="form-control">
+          </div>
 
-    </form>
+          <div class="mb-3">
+              <label for="password">Password: </label>
+              <input type="password" name="password" id="password" placeholder="Write your Password: " class="form-control">
+          </div>
+  
+          <button class="btn btn-secondary">Continue</button>
+  
+      </form>
 
-    {% endblock %}
+
+
+      </div>
+
+
+  </div>
+
+
+</main>
+
+
+{% endblock %}

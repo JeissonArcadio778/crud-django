@@ -3,27 +3,48 @@
 
 {% block content %}
 
-    <h1>Tasks {{status}}</h1>
 
-    {% for task in tasks %}
+<main class="container">
 
-    <ul>
-        <li>
-            <a href="{% url 'task_by_id' task.id %}">
-                
-                {% if task.important %}
-                <h1>{{task.title}}</h1>    
-                {% else %}
-                <p>{{task.title}}</p>    
-                {% endif %}
-                <p>{{task.description}}</p>
-                <p>{{task.important}}</p>
-                <h3>{{task.user}}</h3>
-                <p>{{task.completedAt|date:'M j Y:i'}}</p>
-            </a>
-        </li>
-    </ul>
+    <div class="row">
 
-    {% endfor%}
+        <div class="col-md-6 offset-md-3">
 
-{% endblock %}
+            <h1 class="text-center display-3 py-5">Tasks {{status}}</h1>
+
+                <ul class="list-group">
+                    {% for task in tasks %}
+                        <a class="list-group-item" href="{% url 'task_by_id' task.id %}">
+                            
+                            <header class="d-flex justify-content-between">
+
+                            {% if task.important %}
+        
+                                <h1 class="fw-bold text-success">{{task.title}}</h1>    
+                            
+                            {% else %}
+                                
+                                <h1 class="fw-bold">{{task.title}}</h1>    
+                            
+                            {% endif %}
+
+                            <h3>{{task.user.username}}</h3>
+                                
+                            </header>
+                                <p>{{task.description}}</p>
+                                <p>{{task.important}}</p>
+                                <p>{{task.completedAt|date:'M j Y:i'}}</p>
+                        </a>
+                        {% endfor%}
+                </ul>
+
+        </div>
+    </div>
+
+</main>
+
+   
+
+
+
+    {% endblock %}

@@ -44,14 +44,6 @@ def signup(request):
         })
 
 
-@login_required
-def signout(request):
-
-    logout(request)
-
-    return redirect('home')
-
-
 def signin(request):
 
     if request.method == 'GET':
@@ -64,8 +56,7 @@ def signin(request):
 
         try:
 
-            user = authenticate(
-                request, username=request.POST['username'], password=request.POST['password'])
+            user = authenticate(request, username=request.POST['username'], password=request.POST['password'])
 
             if user is None:
                 return render(request, 'login.html', {
@@ -76,11 +67,20 @@ def signin(request):
                 login(request, user)  # save session
                 return redirect('tasks')
         except:
-
+            
             return render(request, 'login.html', {
                 "form": AuthenticationForm,
                 "error": "Error in login"
             })
+
+
+@login_required
+def signout(request):
+
+    logout(request)
+
+    return redirect('home')
+
 
 @login_required
 def tasks(request):
@@ -138,8 +138,8 @@ def delete_task(request, task_id):
         task.delete()
         return redirect('tasks')
 
-@login_required
 
+@login_required
 def create_task(request):
 
     if request.method == 'GET':
@@ -160,6 +160,7 @@ def create_task(request):
                 "form": TaskCreateForm,
                 "error": "Error in create task. Please send valid data"
             })
+
 
 @login_required
 def tasks_completed(request):
